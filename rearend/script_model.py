@@ -5,9 +5,10 @@ from PIL import Image
 import replicate
 import os
 def run(image):
+
     torch.load('mojdel.pt', map_location='cpu')
-    image_path = '/Users/ethanbernstein/PycharmProjects/GrowTogether/rearend/AppleCedarRust1.jpeg'
-    img = Image.open(image_path)
+    
+    img = Image.open(image)
     preprocess = transforms.Compose([
         transforms.ToTensor(),           # Convert to tensor
     ])

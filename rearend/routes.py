@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify
+from script_model import run
 
 routes = Blueprint("routes", __name__)
 
@@ -15,7 +16,7 @@ def run_model():
     if file.filename == '':
         return 'No selected file', 400
 
-    file.save('uploaded_image.jpg')
+    run(file)
 
     print(request.files['file'])
 
