@@ -1,5 +1,6 @@
 // import './App.css';
 import './assets/css/main.css'
+import myImage from './images/banner.jpg'
 import React, { useState, useRef } from 'react';
 // import {Camera} from "react-camera-pro";
 
@@ -52,27 +53,26 @@ function App() {
   };
 
   return (
-    <div className='content'>
-      <section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
-						<div class="content">
-							<h1>Upload Image</h1>
-              <form onSubmit={handleSubmit}>
-                <input type="file" onChange={handleFileChange} className='button' accept="image/*" />
-                <button type="submit" className='button'>Upload</button>
-              </form><ul class="actions stacked">
-								<li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
-                {selectedFile && (
-                  <div>
-                    <h2>Selected Image:</h2>
-                    <img src={URL.createObjectURL(selectedFile)} alt="Selected" style={{ maxWidth: '100%' }} />
-                  </div>
-                )}
-							</ul>
-						</div>
-						<div class="image">
-							<img src="images/banner.jpg" alt="" />
-						</div>
-					</section>
+    <div>
+      <section className="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
+				<div className="content">
+					<h1>Upload Image</h1>
+          <form onSubmit={handleSubmit}>
+            <input type="file" onChange={handleFileChange} className='button' accept="image/*" />
+          </form><ul className="actions stacked">
+						<li><a><button type="submit" className="button big wide smooth-scroll-middle">Upload</button></a></li>
+					</ul>
+				</div>
+				<div className="image">
+					<img src={myImage} alt="banner" />
+          {selectedFile && (
+            <div>
+              <h2>Selected Image:</h2>
+              <img src={URL.createObjectURL(selectedFile)} alt="Selected" style={{ width: '30px', heigh: 'auto', alignItems: 'right'}} />
+            </div>
+          )}
+				</div>
+			</section>
     </div>
   );
 }
