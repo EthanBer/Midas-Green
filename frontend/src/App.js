@@ -51,6 +51,19 @@ function App() {
     }
   };
 
+  const handleFileUpload = () => {
+    console.log(selectedFile)
+
+
+    var data = new FormData()
+    data.append('file', selectedFile)
+
+    fetch("http://127.0.0.1:5000/upload", {
+      method: 'POST',
+      body: data
+    })
+  }
+
   return (
     <div className='content'>
       <section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
@@ -58,7 +71,7 @@ function App() {
 							<h1>Upload Image</h1>
               <form onSubmit={handleSubmit}>
                 <input type="file" onChange={handleFileChange} className='button' accept="image/*" />
-                <button type="submit" className='button'>Upload</button>
+                <button type="submit" className='button' onClick={handleFileUpload}>Upload</button>
               </form><ul class="actions stacked">
 								<li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
                 {selectedFile && (
