@@ -1,8 +1,25 @@
 import './App.css';
 import './assets/css/main.css'
-import myImage from './images/banner.jpg'
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useMemo } from 'react';
 import {Camera} from "react-camera-pro";
+
+function getBase64StrFromUrl(dataUrl) {
+  const prefix = "base64,";
+  const sliceIndex = dataUrl.indexOf(prefix);
+  if (sliceIndex === -1) throw new Error("Expected base64 data URL");
+  return dataUrl.slice(sliceIndex + prefix.length);
+}
+
+// https://deno.land/std@0.182.0/encoding/base64.ts?source#L137
+function decode(base64Str) {
+  const binString = window.atob(base64Str);
+  const size = binString.length;
+  const bytes = new Uint8Array(size);
+  for (let i = 0; i < size; i++) {
+    bytes[i] = binString.charCodeAt(i);
+  }
+  return bytes;
+}
 
 function App() {
   
@@ -13,6 +30,11 @@ function App() {
     setIsVisible(!isVisible);
   }
 
+  const convertedImage = useMemo(
+    () => image ? new File([decode(getBase64StrFromUrl(image))], 'captureImage', {type: 'image/jpeg'}) : new Uint8Array(),
+    [image],
+  );
+  
 
   const [selectedFile, setSelectedFile] = useState(null);
   const [diagnosisText, setDiagnosisText] = useState("");
@@ -64,7 +86,7 @@ function App() {
                 {isVisible && <button onClick={() => setImage(camera.current.takePhoto())}>Take photo</button> }
                 {image && <img style={{'width': 200, margin: 20, display: 'block'}} src={image} alt='capture'/> }
               </div>
-              {image && <button type="submit" className='button' onClick={() => sendFile(image)}>Upload Capture</button>}
+              {image && <button type="submit" className='button' onClick={() => sendFile(convertedImage)}>Upload Capture</button>}
 						</div>
 						<div className="responseText">
               <p>
