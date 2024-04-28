@@ -70,8 +70,8 @@ function App() {
               <form onSubmit={(e)=>{e.preventDefault();}}>
                 <input type="file" onChange={handleFileChange} className='button' accept="image/*" />
                 {selectedFile ? 
-                <button type="submit" className='button' onClick={()=>sendFile(selectedFile)}>Upload File</button>: 
-                <button type="submit" className='button disabled' onClick={()=>sendFile(selectedFile)}>Upload File</button>}
+                <button type="submit" className='upload' onClick={()=>sendFile(selectedFile)}>Upload File</button>: 
+                <button type="submit" className='upload disabled' onClick={()=>sendFile(selectedFile)}>Upload File</button>}
                 
               </form>
               {selectedFile && (
@@ -90,7 +90,7 @@ function App() {
                 {isVisible && <button onClick={() => setImage(camera.current.takePhoto())}>Take photo</button> }
                 {image && <img style={{'width': 200, margin: 20, display: 'block'}} src={image} alt='capture'/> }
               </div>
-              {image && <button type="submit" className='button' onClick={() => sendFile(convertedImage)}>Upload Capture</button>}
+              {image && <button type="submit" className='upload' onClick={() => sendFile(convertedImage)}>Upload Capture</button>}
 						</div>
 						<div className="responseText">
               <p>

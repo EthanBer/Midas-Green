@@ -2236,6 +2236,104 @@ input, select, textarea {
 				background-color: #1ebdd1;
 			}
 
+
+	
+	.upload {
+		-moz-appearance: none;
+		-webkit-appearance: none;
+		-ms-appearance: none;
+		appearance: none;
+		-moz-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+		-webkit-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+		-ms-transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+		transition: background-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out, color 0.2s ease-in-out;
+		border: 0;
+		cursor: pointer;
+		display: inline-block;
+		font-weight: 400;
+		letter-spacing: 0.125em;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		white-space: nowrap;
+		font-size: 0.75rem;
+		max-width: 20rem;
+		height: 3.75em;
+		line-height: 3.75em;
+		border-radius: 3.75em;
+		padding: 0 2.5em;
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+		.upload.icon:before {
+			margin-right: 0.5rem;
+		}
+
+
+		.upload.fit {
+			width: 100%;
+		}
+
+		.upload.small {
+			font-size: 0.6rem;
+			height: 3.325em;
+			line-height: 3.325em;
+			border-radius: 3.325em;
+			padding: 0 2em;
+		}
+
+		.upload.large {
+			font-size: 0.8rem;
+			height: 4em;
+			line-height: 4em;
+			border-radius: 4em;
+			padding: 0 3em;
+		}
+
+		.upload.wide {
+			min-width: 14em;
+		}
+		
+		upload.disabled,
+		.upload:disabled {
+			pointer-events: none;
+			opacity: 0.25;
+		}
+
+
+	.upload {
+		background-color: rgba(26, 26, 201, 0.377);
+		box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+		color: #000000 !important;
+	}
+
+
+		.upload:hover {
+			box-shadow: inset 0 0 0 1px rgb(27, 81, 243);
+			color: rgb(27, 81, 243) !important;
+		}
+
+
+		.upload:active {
+			background-color: rgba(71, 211, 229, 0.2);
+			box-shadow: inset 0 0 0 1px rgb(27, 81, 243);
+			color: rgb(27, 81, 243) !important;
+		}
+
+		.upload.primary {
+			background-color: #000000;
+			box-shadow: none;
+			color: rgba(26, 26, 201, 0.377) !important;
+		}
+
+			.upload.primary:hover {
+				background-color: rgb(27, 81, 243);
+			}
+
+			.upload.primary:active {
+				background-color: rgb(27, 81, 243);
+			}
 /* Form */
 
 	form {
