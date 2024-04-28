@@ -6,7 +6,7 @@ routes = Blueprint("routes", __name__)
 @routes.route('/upload', methods=['POST'])
 def run_model():
 
-    print("file sent", len(request.files))
+    print("file sent")
 
     if 'file' not in request.files:
         print('no file')
@@ -16,8 +16,6 @@ def run_model():
     if file.filename == '':
         return 'No selected file', 400
 
-    run(file)
+    result = run(file)
 
-    print(request.files['file'])
-
-    return jsonify({'result': "result"})
+    return jsonify({'body': result})

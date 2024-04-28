@@ -1,4 +1,4 @@
-// import './App.css';
+import './App.css';
 import './assets/css/main.css'
 import React, { useState, useRef } from 'react';
 // import {Camera} from "react-camera-pro";
@@ -25,6 +25,7 @@ function App() {
   //   </div>
   // );
   const [selectedFile, setSelectedFile] = useState(null);
+  const [diagnosisText, setDiagnosisText] = useState("");
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -52,15 +53,20 @@ function App() {
   };
 
   const handleFileUpload = () => {
-    console.log(selectedFile)
-
 
     var data = new FormData()
     data.append('file', selectedFile)
+    setDiagnosisText("loading....")
 
     fetch("http://127.0.0.1:5000/upload", {
       method: 'POST',
       body: data
+    }).then((response) => {
+      response.json().then((value) => {
+        setDiagnosisText(value.body)
+      })
+    }).catch(() => {
+      setDiagnosisText("Error, tokens may have run out")
     })
   }
 
@@ -72,18 +78,19 @@ function App() {
               <form onSubmit={handleSubmit}>
                 <input type="file" onChange={handleFileChange} className='button' accept="image/*" />
                 <button type="submit" className='button' onClick={handleFileUpload}>Upload</button>
-              </form><ul class="actions stacked">
-								<li><a href="#first" class="button big wide smooth-scroll-middle">Get Started</a></li>
-                {selectedFile && (
-                  <div>
-                    <h2>Selected Image:</h2>
-                    <img src={URL.createObjectURL(selectedFile)} alt="Selected" style={{ maxWidth: '100%' }} />
-                  </div>
-                )}
-							</ul>
+              </form>
+              {selectedFile && (
+                <div>
+                  <h2>Selected Image:</h2>
+                  <img src={URL.createObjectURL(selectedFile)} alt="Selected" style={{ maxWidth: '100%' }} />
+                </div>
+              )}
 						</div>
-						<div class="image">
-							<img src="images/banner.jpg" alt="" />
+						<div className="responseText">
+							{/* <img src="images/banner.jpg" alt="" /> */}
+              <p>
+                {diagnosisText}
+              </p>
 						</div>
 					</section>
     </div>
