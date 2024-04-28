@@ -63,12 +63,16 @@ function App() {
 
   return (
     <div className='content'>
-      <section class="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
-						<div class="content">
+      <p className='title'>Midas Green: Diagnosing and Recomending Treatments for Plants</p>
+      <section className="banner style1 orient-left content-align-left image-position-right fullscreen onload-image-fade-in onload-content-fade-right">
+						<div className="content">
 							<h1>Upload Image</h1>
               <form onSubmit={(e)=>{e.preventDefault();}}>
                 <input type="file" onChange={handleFileChange} className='button' accept="image/*" />
-                <button type="submit" className='button' onClick={()=>sendFile(selectedFile)}>Upload File</button>
+                {selectedFile ? 
+                <button type="submit" className='button' onClick={()=>sendFile(selectedFile)}>Upload File</button>: 
+                <button type="submit" className='button disabled' onClick={()=>sendFile(selectedFile)}>Upload File</button>}
+                
               </form>
               {selectedFile && (
                 <div>
